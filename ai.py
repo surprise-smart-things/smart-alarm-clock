@@ -13,4 +13,3 @@ def giveSnooze(new_data, wake):
     prediction = loaded_model.predict(new_data)
     return (prediction[0])
 
-# this is the work of the geat sidi
