@@ -12,3 +12,5 @@ def giveSnooze(new_data, wake):
     loaded_model = pickle.load(open(filename, 'rb'))
     prediction = loaded_model.predict(new_data)
     return (prediction[0])
+
+# this is the work of the geat sidi
