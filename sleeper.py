@@ -63,6 +63,46 @@ def fitapi(day):
     except HttpError as err:
         print(err)
 
+def fitstep(day):
+    creds = None
+    # The file token.json stores the user's access and refresh tokens, and is
+    # created automatically when the authorization flow completes for the first
+    # time.
+    if os.path.exists('token.json'):
+        creds = Credentials.from_authorized_user_file('token.json', SCOPES)
+    # If there are no (valid) credentials available, let the user log in.
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            flow = InstalledAppFlow.from_client_secrets_file(
+                'credentials.json', SCOPES)
+            creds = flow.run_local_server(port=0)
+        # Save the credentials for the next run
+        with open('token.json', 'w') as token:
+            token.write(creds.to_json())
+    t = day
+    date = datetime.datetime.today().strftime("%Y-%m-%d-") + "20:00"
+    date = datetime.datetime.strptime(date, "%Y-%m-%d-%H:%M")
+    try:
+        authed_session = AuthorizedSession(creds)
+        body = {
+                    "aggregateBy": [{
+                        "dataTypeName": "com.google.step_count.delta",
+                        "dataSourceId": "derived:com.google.step_count.delta:com.google.android.gms:estimated_steps"
+                    }],
+                    "bucketByTime": { "durationMillis": 86400000 },
+                    "endTimeMillis": int((date - datetime.timedelta(days=t) - datetime.datetime.utcfromtimestamp(0)).total_seconds()*1000),
+                    "startTimeMillis": int((date - datetime.timedelta(days=t+1) - datetime.datetime.utcfromtimestamp(0)).total_seconds()*1000)
+                }
+        response = authed_session.post(
+            url='https://fitness.googleapis.com/fitness/v1/users/me/dataset:aggregate', json=body)
+        step = response.json()
+        return step["bucket"][0]["dataset"][0]["point"][0]["value"][0]["intVal"]
+
+    except HttpError as err:
+        print(err)
+
 
 def sleepcal(day):
     sleep = fitapi(day)
@@ -83,4 +123,5 @@ def sleepcal(day):
 
 
 if __name__ == '__main__':
-    print(sleepcal(0))
+    # print(sleepcal(180))
+    print(fitstep(1))

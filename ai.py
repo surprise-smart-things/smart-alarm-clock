@@ -1,6 +1,7 @@
 import pickle
 import numpy as np
 import warnings
+from sklearn.linear_model import LogisticRegression
 warnings.filterwarnings("ignore")
 
 def giveSnooze(new_data, wake):
@@ -11,5 +12,17 @@ def giveSnooze(new_data, wake):
     new_data = np.array(new_data).reshape(1, -1)
     loaded_model = pickle.load(open(filename, 'rb'))
     prediction = loaded_model.predict(new_data)
-    return (prediction[0])
+    return prediction[0]
+
+
+
+
+
+
+
+
+
+
+
+
 

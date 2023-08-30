@@ -20,7 +20,7 @@ def ftmin(t):
 def ringTime():
     c = cal.get_events(1)
     print("Calendar Data: ", c)
-    s = sc.sleepcal(0)
+    s = sc.sleepcal(202)
     print("Sleep Data: ", s)
     start = fmin(c[1])
     loc = c[-1]
@@ -36,3 +36,8 @@ def ringTime():
 
 
 print("Alarm will start ringing at: ", ftmin(ringTime()))
+
+
+
+
+
