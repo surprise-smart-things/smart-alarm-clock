@@ -9,6 +9,11 @@ This project is centered around developing a smart alarm system that leverages m
   </li>
 </ul>
 
+## How to run the project
+1. **Download the dataset** : Save the dataset 'kk.csv' locally
+2. **Train the ML model** : Open the file 'aitrain.ipynb' and run the script to train the machine learning model using the dataset
+3. **Prepare the pickle model** : Open the file 'model_vi.pkl
+
 
 
 
