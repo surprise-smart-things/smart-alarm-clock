@@ -10,9 +10,13 @@ This project is centered around developing a smart alarm system that leverages m
 </ul>
 
 ## How to run the project
-1. **Download the dataset** : Save the dataset 'kk.csv' locally
-2. **Train the ML model** : Open the file 'aitrain.ipynb' and run the script to train the machine learning model using the dataset
-3. **Prepare the pickle model** : Open the file 'model_vi.pkl
+1. **Download the dataset** : Save the dataset ('kk.csv') locally
+2. **Train the ML model** : Open the file 'aitrain.ipynb'. Ensure you have the required libraries installed: `numpy`, `pandas`, `matplotlib`, `tensorflow`, `scikit-learn`. Run the script to train the machine learning model using the dataset
+3. **Prepare the pickle model** : Open the file 'ai.py' and run the script to create the model 'finalized_model.sav' for snooze count prediction
+4. **Start the Web Interface** :
+5. **Google Calendar Integration** : Open the file 'sleeper.py' and follow the instructions ( have been commented out) to integrate with Google Calendar. Run the script to retrieve sleep data using the *Google Fitness API*
+6. **Travel Time Calculation** : Run the 'map.py' file to calculate the travel time between two locations using the *Open Source Routing Machine* API
+7. **Optimal Alarm Time Calculation** : Open the 'main.py' file and run the script to calculate the optimal alarm time
 
 
 
