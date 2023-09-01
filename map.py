@@ -6,6 +6,7 @@ import json
 from geopy.geocoders import Nominatim
 
 # Initialize Nominatim API
+# https://www.openstreetmap.org/#map=11/12.9607/80.1858
 
 def locate(l1, l2):
     geolocator = Nominatim(user_agent="MyApp")
