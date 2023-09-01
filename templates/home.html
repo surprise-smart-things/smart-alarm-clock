@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Clock</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+	<h1 id="clock">Loading current time</h1>
+	<script>
+      var clock = document.getElementById("clock");
+
+      setInterval(() => {
+          fetch("{{ url_for('time_feed') }}")
+          .then(response => {
+                  response.text().then(t => {clock.innerHTML = t})
+              });
+          }, 1000);
+    </script>
+	<p>Your next alarm is set for: {{ alarm }}</p>
+	<p>Your next event is at: {{ event }}</p>
+	<p>Your average sleep over the last few days is: {{ condition }}</p>
+
+	<p id="ok"></p>
+	<script>
+	const audio = document.getElementById("sound");
+	const cool = document.getElementById("ok");
+	var data = 1
+	function updateData() {
+		fetch("{{ url_for('alarm_feed') }}")
+          .then(response => {
+                  response.text().then(t => {data = t})
+              });
+
+		console.log(data);
+		if (data == "True") {
+			const audio = document.getElementById("sound");
+			audio.play();
+		}
+	}
+	setInterval(updateData, 1000);
+	</script>
+	<p>{{ alarmbool }}</p>
+</body>
+</html>

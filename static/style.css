@@ -1,0 +1,15 @@
+body {
+	margin: 48px;
+	background: #333;
+	color: #DDD;
+}
+
+h1 {
+  text-align: center;
+  font-family: Corbel, sans-serif;
+  margin-top: 50px;
+}
+p {
+  text-align: center;
+  font-family: Corbel, sans-serif;
+}
