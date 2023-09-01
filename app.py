@@ -1,8 +1,12 @@
 from flask import Flask, render_template, Response
 from datetime import datetime
 
+
+
 app = Flask(__name__)
 
+def start():
+	return app
 
 def get_alarm():
 	alarm = datetime(2023, 9, 1, 15, 24)

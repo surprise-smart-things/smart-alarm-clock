@@ -1,7 +1,7 @@
 import pickle
 import numpy as np
 import warnings
-from sklearn.linear_model import LogisticRegression
+import tensorflow.keras
 warnings.filterwarnings("ignore")
 
 def giveSnooze(new_data, wake):

@@ -2,6 +2,7 @@ import sleeper as sc
 import map
 import cal
 import ai
+import app
 
 
 def fmin(t):
@@ -36,7 +37,8 @@ def ringTime():
 
 
 print("Alarm will start ringing at: ", ftmin(ringTime()))
-
+web = app.start()
+web.run()
 
 
 
