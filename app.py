@@ -1,20 +1,20 @@
 from flask import Flask, render_template, Response
 from datetime import datetime
-
+import main
 
 
 app = Flask(__name__)
 
 def start():
-	return app
+	data = main.output()
+	return data
 
 def get_alarm():
-	alarm = datetime(2023, 9, 1, 15, 24)
-	return alarm.strftime("%A, %d %B %Y | %H:%M")
+	return data[3].strftime("%H:%M")
 
 
 def get_event():
-	return ("31 August 2023 | 09:00")
+	return data[0].strftime("%A, %d %B %Y | %H:%M")
 
 
 def get_avg_sleep():
@@ -44,4 +44,5 @@ def alarm_feed():
 
 
 if __name__ == '__main__':
+	data = start()
 	app.run(debug=True)

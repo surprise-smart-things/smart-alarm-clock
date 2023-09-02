@@ -2,7 +2,7 @@ import sleeper as sc
 import map
 import cal
 import ai
-import app
+import datetime
 
 
 def fmin(t):
@@ -19,10 +19,11 @@ def ftmin(t):
 
 
 def ringTime():
-    c = cal.get_events(1)
+    c = cal.get_events(2)
     print("Calendar Data: ", c)
     s = sc.sleepcal(202)
     print("Sleep Data: ", s)
+    step = sc.fitstep(1)
     start = fmin(c[1])
     loc = c[-1]
     here = 'Vellore Institute of Technology - Chennai, Vandalur - Mambakkam - Kelambakkam Road, Kolapakkam, Chennai, ' \
@@ -31,14 +32,19 @@ def ringTime():
     print("Travel Time: ", reach)
     leave = start - reach
     wakeTime = leave-3600
-    snooze = ai.giveSnooze(s, wakeTime+4*3600)
+    snooze = ai.giveSnooze(s, step, wakeTime+4*3600)
     print("Snoozes: ", snooze)
-    return wakeTime - snooze*600
+    return c, s, here, wakeTime - snooze*600
+
+def output():
+    data = ringTime()
+    # sleep = (data[0][-1] - data[0][-2])
+    caldate = datetime.datetime.strptime(data[0][1], "%Y-%m-%dT%H:%M:%S+05:30")
+    return caldate, data[2], data[0][-1], ftmin(data[3])
 
 
-print("Alarm will start ringing at: ", ftmin(ringTime()))
-web = app.start()
-web.run()
+if __name__ == '__main__':
+    print("Alarm will start ringing at: ", ftmin(ringTime()[-1]))
 
 
 
