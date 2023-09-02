@@ -5,6 +5,7 @@ import main
 
 app = Flask(__name__)
 
+
 def start():
 	data = main.output()
 	return data
@@ -24,6 +25,7 @@ def get_avg_sleep():
 @app.route('/')
 def index():
 	condition = 3
+	data = start()
 	return render_template('home.html', alarm=get_alarm(), event = get_event(), avg_sleep = get_avg_sleep(), condition=condition, event_place = data[2])
 
 
@@ -37,12 +39,14 @@ def time_feed():
 @app.route('/alarm_feed')
 def alarm_feed():
 	def alarm():
-		if get_alarm() == datetime.now().strftime("%H:%M"):
+		if get_alarm() == datetime.now().strftime("flask run --host=0.0.0.0%H:%M"):
 			return "True"  # return also will work
 		return "False"
 	return Response(alarm(), mimetype='text')
 
 
+data = start()
+
 if __name__ == '__main__':
-	data = start()
-	app.run(debug=True)
+	# data = start()
+	app.run(debug=False)
