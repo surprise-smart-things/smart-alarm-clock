@@ -37,7 +37,7 @@ def time_feed():
 @app.route('/alarm_feed')
 def alarm_feed():
 	def alarm():
-		if get_alarm() == datetime.now().strftime("%A, %d %B %Y | %H:%M"):
+		if get_alarm() == datetime.now().strftime("%H:%M"):
 			return "True"  # return also will work
 		return "False"
 	return Response(alarm(), mimetype='text')

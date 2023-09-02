@@ -12,7 +12,7 @@ import datetime
 import csv
 
 # If modifying these scopes, delete the file token.json.
-SCOPES = ['https://www.googleapis.com/auth/fitness.activity.read', "https://www.googleapis.com/auth/fitness.sleep.read"]
+SCOPES = ['https://www.googleapis.com/auth/calendar', 'https://www.googleapis.com/auth/fitness.activity.read', "https://www.googleapis.com/auth/fitness.sleep.read"]
 
 
 def convertN2D(time_in_nanos):
