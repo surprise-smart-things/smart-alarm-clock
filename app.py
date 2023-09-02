@@ -10,7 +10,7 @@ def start():
 	return data
 
 def get_alarm():
-	return data[3].strftime("%H:%M")
+	return data[3]
 
 
 def get_event():
@@ -24,7 +24,7 @@ def get_avg_sleep():
 @app.route('/')
 def index():
 	condition = 3
-	return render_template('home.html', alarm=get_alarm(), event = get_event(), avg_sleep = get_avg_sleep(), condition=condition)
+	return render_template('home.html', alarm=get_alarm(), event = get_event(), avg_sleep = get_avg_sleep(), condition=condition, event_place = data[2])
 
 
 @app.route('/time_feed')

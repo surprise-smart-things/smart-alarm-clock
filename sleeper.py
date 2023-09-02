@@ -63,6 +63,7 @@ def fitapi(day):
     except HttpError as err:
         print(err)
 
+
 def fitstep(day):
     creds = None
     # The file token.json stores the user's access and refresh tokens, and is
@@ -103,11 +104,13 @@ def fitstep(day):
     except HttpError as err:
         print(err)
 
+
 def stepdata():
     steps=[]
     for i in range (100):
         steps.append(fitstep(180+i))
     return steps
+
 
 def sleepcal(day):
     sleep = fitapi(day)
@@ -126,12 +129,14 @@ def sleepcal(day):
 
     return light, deep, start.seconds, end.seconds
 
+
 def sleepdata():
     deep_by_light = []
     for i in range(100):
         deep,light,start,end=sleepcal(i+180)
         deep_by_light.append(deep/light)
     return deep_by_light
+
 
 if __name__ == '__main__':
     # print(sleepcal(180))
